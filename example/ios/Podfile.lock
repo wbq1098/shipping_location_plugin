@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - shipping_location_plugin (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - shipping_location_plugin (from `.symlinks/plugins/shipping_location_plugin/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  shipping_location_plugin:
+    :path: ".symlinks/plugins/shipping_location_plugin/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  shipping_location_plugin: a0067250876d277a1bb66beba15a931a3965fccb
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.10.0.rc.1
