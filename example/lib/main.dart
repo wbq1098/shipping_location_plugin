@@ -28,6 +28,14 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       platformVersion = await ShippingLocationPlugin.platformVersion;
+      platformVersion += "\n" +
+          await ShippingLocationPlugin.init(
+              "com.nxzybd.che1",
+              "3c3a617cee194909bec365f73a3df1e549784e7498a147b1b673fe4a904408d1",
+              "6491640122MA76DQY549",
+              "debug");
+      platformVersion += "\n" + await ShippingLocationPlugin.start();
+      platformVersion += "\n" + await ShippingLocationPlugin.stop();
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -49,8 +57,11 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Padding(
+          padding: EdgeInsets.all(20),
+          child: Center(
+            child: Text('Running on: $_platformVersion\n'),
+          ),
         ),
       ),
     );

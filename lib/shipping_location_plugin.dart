@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -12,19 +11,30 @@ class ShippingLocationPlugin {
     return version;
   }
 
-  static Future<String> get init async {
-    final String result = await _channel.invokeMethod('init');
-    print("init");
+  static Future<String> init(
+      appId, appSecurity, enterpriseSenderCode, environment) async {
+    String result;
+    try {
+      result = await _channel.invokeMethod('init', {
+        'appId': appId,
+        'appSecurity': appSecurity,
+        'enterpriseSenderCode': enterpriseSenderCode,
+        'environment': environment
+      });
+    } on PlatformException catch (e) {
+      print("Failed: '${e.message}'.");
+    }
+    print("$result");
     return result;
   }
 
-  static Future<String> get start async {
+  static Future<String> start() async {
     final String result = await _channel.invokeMethod('start');
     print("start");
     return result;
   }
 
-  static Future<String> get stop async {
+  static Future<String> stop() async {
     final String result = await _channel.invokeMethod('stop');
     print("stop");
     return result;
