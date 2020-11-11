@@ -1,5 +1,6 @@
 package com.nxzybd.shipping_location_plugin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -9,6 +10,8 @@ import com.hdgq.locationlib.LocationOpenApi;
 import com.hdgq.locationlib.listener.OnResultListener;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.activity.ActivityAware;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -18,19 +21,18 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /**
  * ShippingLocationPlugin
  */
-public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler {
+public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
     /// when the Flutter Engine is detached from the Activity
     private MethodChannel channel;
-    private Context context;
+    private Activity activity;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "shipping_location_plugin");
         channel.setMethodCallHandler(this);
-        context = flutterPluginBinding.getApplicationContext();
     }
 
     @Override
@@ -42,8 +44,8 @@ public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler 
             String appSecurity = call.argument("appSecurity");
             String enterpriseSenderCode = call.argument("enterpriseSenderCode");
             String environment = call.argument("environment");
-            result.success("init: \n" + appId + "\n," + appSecurity + "\n," + enterpriseSenderCode + "\n," + environment);
-            LocationOpenApi.init(context, appId, appSecurity, enterpriseSenderCode, environment, new OnResultListener() {
+
+            LocationOpenApi.init(activity, appId, appSecurity, enterpriseSenderCode, environment, new OnResultListener() {
                 @Override
                 public void onSuccess() {
                     Log.i("shipping_location", "onSuccess");
@@ -54,6 +56,8 @@ public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler 
                     Log.i("shipping_location", s + ": " + s1);
                 }
             });
+
+            result.success("init: \n" + appId + "\n," + appSecurity + "\n," + enterpriseSenderCode + "\n," + environment);
         } else if (call.method.equals("start")) {
             result.success("start");
         } else if (call.method.equals("stop")) {
@@ -67,5 +71,25 @@ public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         channel.setMethodCallHandler(null);
+    }
+
+    @Override
+    public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
+        activity = binding.getActivity();
+    }
+
+    @Override
+    public void onDetachedFromActivityForConfigChanges() {
+
+    }
+
+    @Override
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
+
+    }
+
+    @Override
+    public void onDetachedFromActivity() {
+
     }
 }
