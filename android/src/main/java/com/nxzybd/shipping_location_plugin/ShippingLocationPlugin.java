@@ -94,12 +94,12 @@ public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler,
             LocationOpenApi.init(activity, appId, appSecurity, enterpriseSenderCode, environment, new OnResultListener() {
                 @Override
                 public void onSuccess() {
-                    Log.e("shipping_location", "onSuccess");
+                    Log.e("apicloud", "onSuccess");
                 }
 
                 @Override
                 public void onFailure(String s, String s1) {
-                    Log.e("shipping_location", s + ": " + s1);
+                    Log.e("apicloud", s + ": " + s1);
                 }
             });
 

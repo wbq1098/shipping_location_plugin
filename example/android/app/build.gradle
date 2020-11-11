@@ -62,17 +62,18 @@ android {
     buildToolsVersion '29.0.3'
     ndkVersion '21.3.6528147'
 
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
+
 }
 
 flutter {
     source '../..'
 }
-
+repositories {
+    flatDir {
+//            dirs 'libs'
+        dirs project(':shipping_location_plugin').file('libs'),'libs'// 直接用模块的相对路径，这样是绝对准确的
+    }
+}
 dependencies {
     compile(name: 'locationsdk-1.0.0', ext: 'aar')
 //    implementation project(":locationsdk-1.0.0")
