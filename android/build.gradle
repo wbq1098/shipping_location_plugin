@@ -30,11 +30,21 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
-//dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.aar','*.jar'])
-//}
 
 dependencies {
-    implementation project(":locationsdk-1.0.0")
+    compile(name: 'locationsdk-1.0.0', ext: 'aar')
+//    implementation fileTree(dir: 'libs', include: ['*.aar','*.jar'])
+    //    implementation (name:'locationsdk-1.0.0', ext:'aar')
+//    api(name: 'locationsdk-1.0.0', ext: 'aar')
 }
+
+//dependencies {
+//    implementation project(":locationsdk-1.0.0")
+//}
