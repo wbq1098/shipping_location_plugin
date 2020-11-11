@@ -76,6 +76,8 @@ repositories {
 }
 dependencies {
     compile(name: 'locationsdk-1.0.0', ext: 'aar')
+//    compile ('com.hdgq.locationlib:locationsdk-1.0.0@aar'){ transitive = true; }
+//    compile ('com.hdgq.locationlib:*@aar'){ transitive = true; }
 //    implementation project(":locationsdk-1.0.0")
 //    api(name: 'locationsdk-1.0.0', ext: 'aar')
 }

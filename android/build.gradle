@@ -39,6 +39,7 @@ repositories {
     }
 }
 dependencies {
+//    compile ('com.hdgq.locationlib:locationsdk-1.0.0@aar'){ transitive = true; }
     compile(name: 'locationsdk-1.0.0', ext: 'aar')
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation fileTree(dir: 'libs', include: ['*.aar','*.jar'])
