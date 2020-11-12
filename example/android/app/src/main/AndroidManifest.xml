@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nxzybd.shipping_location_plugin_example">
+    package="com.nxzybd.driver">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -29,7 +29,7 @@
         android:allowBackup="true">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="7d8e2884f0e51a735b7eeb7957764b22" />
+            android:value="f5a9c49498818b39aaa08145373a8621" />
 
         <activity
             android:name=".MainActivity"

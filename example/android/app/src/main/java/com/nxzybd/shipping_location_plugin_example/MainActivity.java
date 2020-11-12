@@ -1,4 +1,4 @@
-package com.nxzybd.shipping_location_plugin_example;
+package com.nxzybd.driver;
 
 import io.flutter.embedding.android.FlutterActivity;
 

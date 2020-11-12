@@ -1,3 +1,2 @@
 ## 0.0.1
-
-* TODO: Describe initial release.
+实现Android端的初始化接口
