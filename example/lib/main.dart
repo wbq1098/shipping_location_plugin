@@ -34,8 +34,8 @@ class _MyAppState extends State<MyApp> {
               "3c3a617cee194909bec365f73a3df1e549784e7498a147b1b673fe4a904408d1",
               "6491640122MA76DQY549",
               "debug");
-      platformVersion += "\n" + await ShippingLocationPlugin.start();
-      platformVersion += "\n" + await ShippingLocationPlugin.stop();
+      platformVersion += "\n" + await ShippingLocationPlugin.start("12345678","0000","610113","130102");
+      platformVersion += "\n" + await ShippingLocationPlugin.stop("12345678","0000","610113","130102");
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }

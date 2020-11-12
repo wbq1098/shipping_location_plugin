@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.hdgq.locationlib.LocationOpenApi;
+import com.hdgq.locationlib.entity.ShippingNoteInfo;
 import com.hdgq.locationlib.keeplive.KeepLive;
 import com.hdgq.locationlib.keeplive.config.ForegroundNotification;
 import com.hdgq.locationlib.keeplive.config.ForegroundNotificationClickListener;
@@ -94,7 +95,7 @@ public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler,
             LocationOpenApi.init(activity, appId, appSecurity, enterpriseSenderCode, environment, new OnResultListener() {
                 @Override
                 public void onSuccess() {
-                    Log.e("apicloud", "onSuccess");
+                    Log.e("apicloud", "onSuccess init");
                 }
 
                 @Override
@@ -103,11 +104,65 @@ public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler,
                 }
             });
 
-            result.success("init: \n" + appId + "\n," + appSecurity + "\n," + enterpriseSenderCode + "\n," + environment);
+            result.success("init: \n" + appId + "\n" + appSecurity + "\n" + enterpriseSenderCode + "\n" + environment);
         } else if (call.method.equals("start")) {
-            result.success("start");
+            String shippingNoteNumber = call.argument("shippingNoteNumber");
+            String serialNumber = call.argument("serialNumber");
+            String startCountrySubdivisionCode = call.argument("startCountrySubdivisionCode");
+            String endCountrySubdivisionCode = call.argument("endCountrySubdivisionCode");
+            ShippingNoteInfo shippingNoteInfo = new ShippingNoteInfo();
+//            shippingNoteInfo.setShippingNoteNumber("12345678");
+//            shippingNoteInfo.setSerialNumber("0000");
+//            shippingNoteInfo.setStartCountrySubdivisionCode("610113");
+//            shippingNoteInfo.setEndCountrySubdivisionCode("130102");
+            shippingNoteInfo.setShippingNoteNumber(shippingNoteNumber);
+            shippingNoteInfo.setSerialNumber(serialNumber);
+            shippingNoteInfo.setStartCountrySubdivisionCode(startCountrySubdivisionCode);
+            shippingNoteInfo.setEndCountrySubdivisionCode(endCountrySubdivisionCode);
+            ShippingNoteInfo[] shippingNoteInfos = new ShippingNoteInfo[1];
+            shippingNoteInfos[0] = shippingNoteInfo;
+            LocationOpenApi.start(activity, shippingNoteInfos, new OnResultListener() {
+                @Override
+                public void onSuccess() {
+                    Log.e("apicloud", "onSuccess start");
+                }
+
+                @Override
+                public void onFailure(String s, String s1) {
+                    Log.e("apicloud", s + ": " + s1);
+                }
+            });
+
+            result.success("start: \n" + shippingNoteNumber + "\n" + serialNumber + "\n" + startCountrySubdivisionCode + "\n" + endCountrySubdivisionCode);
         } else if (call.method.equals("stop")) {
-            result.success("stop");
+            String shippingNoteNumber = call.argument("shippingNoteNumber");
+            String serialNumber = call.argument("serialNumber");
+            String startCountrySubdivisionCode = call.argument("startCountrySubdivisionCode");
+            String endCountrySubdivisionCode = call.argument("endCountrySubdivisionCode");
+            ShippingNoteInfo shippingNoteInfo = new ShippingNoteInfo();
+//            shippingNoteInfo.setShippingNoteNumber("12345678");
+//            shippingNoteInfo.setSerialNumber("0000");
+//            shippingNoteInfo.setStartCountrySubdivisionCode("610113");
+//            shippingNoteInfo.setEndCountrySubdivisionCode("130102");
+            shippingNoteInfo.setShippingNoteNumber(shippingNoteNumber);
+            shippingNoteInfo.setSerialNumber(serialNumber);
+            shippingNoteInfo.setStartCountrySubdivisionCode(startCountrySubdivisionCode);
+            shippingNoteInfo.setEndCountrySubdivisionCode(endCountrySubdivisionCode);
+            ShippingNoteInfo[] shippingNoteInfos = new ShippingNoteInfo[1];
+            shippingNoteInfos[0] = shippingNoteInfo;
+            LocationOpenApi.stop(activity, shippingNoteInfos, new OnResultListener() {
+                @Override
+                public void onSuccess() {
+                    Log.e("apicloud", "onSuccess stop");
+                }
+
+                @Override
+                public void onFailure(String s, String s1) {
+                    Log.e("apicloud", s + ": " + s1);
+                }
+            });
+
+            result.success("stop: \n" + shippingNoteNumber + "\n" + serialNumber + "\n" + startCountrySubdivisionCode + "\n" + endCountrySubdivisionCode);
         } else {
             result.notImplemented();
 //            result.error("404", "未匹配到对应的方法"+call.method, null);

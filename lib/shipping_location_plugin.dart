@@ -28,15 +28,35 @@ class ShippingLocationPlugin {
     return result;
   }
 
-  static Future<String> start() async {
-    final String result = await _channel.invokeMethod('start');
-    print("start");
+  static Future<String> start(shippingNoteNumber,serialNumber,startCountrySubdivisionCode,endCountrySubdivisionCode) async {
+    String result;
+    try {
+      result = await _channel.invokeMethod('start', {
+        'shippingNoteNumber': shippingNoteNumber,
+        'serialNumber': serialNumber,
+        'startCountrySubdivisionCode': startCountrySubdivisionCode,
+        'endCountrySubdivisionCode': endCountrySubdivisionCode
+      });
+    } on PlatformException catch (e) {
+      print("Failed: '${e.message}'.");
+    }
+    print("$result");
     return result;
   }
 
-  static Future<String> stop() async {
-    final String result = await _channel.invokeMethod('stop');
-    print("stop");
+  static Future<String> stop(shippingNoteNumber,serialNumber,startCountrySubdivisionCode,endCountrySubdivisionCode) async {
+    String result;
+    try {
+      result = await _channel.invokeMethod('stop', {
+        'shippingNoteNumber': shippingNoteNumber,
+        'serialNumber': serialNumber,
+        'startCountrySubdivisionCode': startCountrySubdivisionCode,
+        'endCountrySubdivisionCode': endCountrySubdivisionCode
+      });
+    } on PlatformException catch (e) {
+      print("Failed: '${e.message}'.");
+    }
+    print("$result");
     return result;
   }
 }
