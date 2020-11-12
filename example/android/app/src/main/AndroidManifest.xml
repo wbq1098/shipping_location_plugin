@@ -12,6 +12,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:replace="label"
         android:allowBackup="true">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="7d8e2884f0e51a735b7eeb7957764b22" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
