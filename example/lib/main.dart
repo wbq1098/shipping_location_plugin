@@ -30,9 +30,9 @@ class _MyAppState extends State<MyApp> {
       platformVersion = await ShippingLocationPlugin.platformVersion;
       platformVersion += "\n" +
           await ShippingLocationPlugin.init(
-              "com.nxzybd.che1",
-              "3c3a617cee194909bec365f73a3df1e549784e7498a147b1b673fe4a904408d1",
-              "6491640122MA76DQY549",
+              "com.aaa.bbb",
+              "dddddddd",
+              "ddddddddd",
               "debug");
       platformVersion += "\n" + await ShippingLocationPlugin.start("12345678","0000","610113","130102");
       platformVersion += "\n" + await ShippingLocationPlugin.stop("12345678","0000","610113","130102");
