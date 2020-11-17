@@ -64,8 +64,8 @@ class ShippingLocationPlugin {
   }
 
   // Android返回桌面功能接口，跟部标SDK没有关系，暂时放在这里，以后单独创建插件
-  static Future<String> backDesktop(shippingNoteNumber,serialNumber,startCountrySubdivisionCode,endCountrySubdivisionCode) async {
-    String result;
+  static Future<bool> backDesktop() async {
+    bool result = false;
     try {
       result = await _channel.invokeMethod('backDesktop');
     } on PlatformException catch (e) {

@@ -165,7 +165,7 @@ public class ShippingLocationPlugin implements FlutterPlugin, MethodCallHandler,
             result.success("stop: \n" + shippingNoteNumber + "\n" + serialNumber + "\n" + startCountrySubdivisionCode + "\n" + endCountrySubdivisionCode);
         } else if (call.method.equals("backDesktop")) {
             result.success(true);
-            moveTaskToBack(false);
+            activity.moveTaskToBack(false);
         } else {
             result.notImplemented();
 //            result.error("404", "未匹配到对应的方法"+call.method, null);
