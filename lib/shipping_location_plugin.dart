@@ -11,6 +11,7 @@ class ShippingLocationPlugin {
     return version;
   }
 
+  // 初始化部标定位SDK
   static Future<String> init(
       appId, appSecurity, enterpriseSenderCode, environment) async {
     String result;
@@ -28,6 +29,7 @@ class ShippingLocationPlugin {
     return result;
   }
 
+  // SDK开始运货接口
   static Future<String> start(shippingNoteNumber,serialNumber,startCountrySubdivisionCode,endCountrySubdivisionCode) async {
     String result;
     try {
@@ -44,6 +46,7 @@ class ShippingLocationPlugin {
     return result;
   }
 
+  // SDK确认送达接口
   static Future<String> stop(shippingNoteNumber,serialNumber,startCountrySubdivisionCode,endCountrySubdivisionCode) async {
     String result;
     try {
@@ -53,6 +56,18 @@ class ShippingLocationPlugin {
         'startCountrySubdivisionCode': startCountrySubdivisionCode,
         'endCountrySubdivisionCode': endCountrySubdivisionCode
       });
+    } on PlatformException catch (e) {
+      print("Failed: '${e.message}'.");
+    }
+    print("$result");
+    return result;
+  }
+
+  // Android返回桌面功能接口，跟部标SDK没有关系，暂时放在这里，以后单独创建插件
+  static Future<String> backDesktop(shippingNoteNumber,serialNumber,startCountrySubdivisionCode,endCountrySubdivisionCode) async {
+    String result;
+    try {
+      result = await _channel.invokeMethod('backDesktop');
     } on PlatformException catch (e) {
       print("Failed: '${e.message}'.");
     }
